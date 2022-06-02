@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     # apps de terceiros
     'rest_framework',
     'dr_scaffold',
+    # minhas apps
+    'backend.core',
+    'backend.crm',
+    'backend.financial',
+    'backend.service',
 ]
 
 MIDDLEWARE = [

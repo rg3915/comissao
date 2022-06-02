@@ -42,9 +42,9 @@ class ComissionNoteItems(models.Model):
     updated = models.DateTimeField('modificado em', auto_now=True)
 
     class Meta:
-        ordering = ('order', 'pk')
+        ordering = ('comission_note', 'pk')
         verbose_name = 'Item da Nota de Comissão'
         verbose_name_plural = 'Itens da Nota de Comissão'
 
     def __str__(self):
-        return f'{self.order} {str(self.pk).zfill(3)}'
+        return f'{self.comission_note} {str(self.pk).zfill(3)}'

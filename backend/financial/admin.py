@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from financial.models import ComissionNote, ComissionNoteItems
+from .models import ComissionNote, ComissionNoteItems
 
 
 @admin.register(ComissionNote)

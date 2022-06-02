@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from service.models import Order, OrderItems, Service
+from .models import Order, OrderItems, Service
 
 
 @admin.register(Service)

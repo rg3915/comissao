@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from crm.models import Customer, Employee
+from .models import Customer, Employee
 
 
 @admin.register(Customer)
