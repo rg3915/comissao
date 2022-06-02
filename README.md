@@ -3,7 +3,7 @@
 Sistema de Comissão de vendas e serviços feito em Django.
 
 <a href="">
-    <img src="../img/youtube.png">
+    <img src="img/youtube.png">
 </a>
 
 ## Este projeto foi feito com:
