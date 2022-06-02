@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse_lazy
 
 from backend.crm.models import Employee
 from backend.service.models import OrderItems
@@ -29,6 +30,9 @@ class ComissionNote(models.Model):
 
     def __str__(self):
         return f'{str(self.pk).zfill(3)}'
+
+    def get_absolute_url(self):
+        return reverse_lazy('financial:comission_note_detail', kwargs={'pk': self.pk})
 
 
 class ComissionNoteItems(models.Model):
