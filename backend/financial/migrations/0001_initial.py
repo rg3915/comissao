@@ -19,14 +19,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ComissionNote',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('payment_date', models.DateField(verbose_name='data de pagamento')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('payment_date', models.DateField(
+                    verbose_name='data de pagamento')),
                 ('paid', models.BooleanField(default=False, verbose_name='pago?')),
                 ('active', models.BooleanField(default=True, verbose_name='ativo')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='criado em')),
-                ('updated', models.DateTimeField(auto_now=True, verbose_name='modificado em')),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='criado por')),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='crm.employee', verbose_name='funcionário')),
+                ('created', models.DateTimeField(
+                    auto_now_add=True, verbose_name='criado em')),
+                ('updated', models.DateTimeField(
+                    auto_now=True, verbose_name='modificado em')),
+                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to=settings.AUTH_USER_MODEL, verbose_name='criado por')),
+                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 to='crm.employee', verbose_name='funcionário')),
             ],
             options={
                 'verbose_name': 'Nota de Comissão',
@@ -37,13 +43,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ComissionNoteItems',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.IntegerField(default=1, null=True, verbose_name='quantidade')),
-                ('comission', models.DecimalField(decimal_places=2, default=0.0, max_digits=5, verbose_name='valor da comissão')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='criado em')),
-                ('updated', models.DateTimeField(auto_now=True, verbose_name='modificado em')),
-                ('comission_note', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='financial.comissionnote', verbose_name='nota de comissão')),
-                ('order_items', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='service.orderitems', verbose_name='itens do pedido')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('quantity', models.IntegerField(
+                    default=1, null=True, verbose_name='quantidade')),
+                ('comission', models.DecimalField(decimal_places=2,
+                 default=0.0, max_digits=5, verbose_name='valor da comissão')),
+                ('created', models.DateTimeField(
+                    auto_now_add=True, verbose_name='criado em')),
+                ('updated', models.DateTimeField(
+                    auto_now=True, verbose_name='modificado em')),
+                ('comission_note', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                 to='financial.comissionnote', verbose_name='nota de comissão')),
+                ('order_items', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                 to='service.orderitems', verbose_name='itens do pedido')),
             ],
             options={
                 'verbose_name': 'Item da Nota de Comissão',

@@ -17,14 +17,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Customer',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=255, verbose_name='nome')),
-                ('last_name', models.CharField(blank=True, max_length=255, null=True, verbose_name='sobrenome')),
-                ('email', models.EmailField(blank=True, max_length=254, null=True, verbose_name='e-mail')),
-                ('phone', models.CharField(blank=True, max_length=255, null=True, verbose_name='telefone')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('first_name', models.CharField(
+                    max_length=255, verbose_name='nome')),
+                ('last_name', models.CharField(blank=True,
+                 max_length=255, null=True, verbose_name='sobrenome')),
+                ('email', models.EmailField(blank=True,
+                 max_length=254, null=True, verbose_name='e-mail')),
+                ('phone', models.CharField(blank=True,
+                 max_length=255, null=True, verbose_name='telefone')),
                 ('active', models.BooleanField(default=True, verbose_name='ativo')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='criado em')),
-                ('updated', models.DateTimeField(auto_now=True, verbose_name='modificado em')),
+                ('created', models.DateTimeField(
+                    auto_now_add=True, verbose_name='criado em')),
+                ('updated', models.DateTimeField(
+                    auto_now=True, verbose_name='modificado em')),
             ],
             options={
                 'verbose_name': 'Cliente',
@@ -35,14 +42,21 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Employee',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('occupation', models.CharField(blank=True, max_length=255, null=True, verbose_name='cargo')),
-                ('rg', models.CharField(blank=True, max_length=9, null=True, verbose_name='RG')),
-                ('cpf', models.CharField(blank=True, max_length=11, null=True, verbose_name='CPF')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('occupation', models.CharField(blank=True,
+                 max_length=255, null=True, verbose_name='cargo')),
+                ('rg', models.CharField(blank=True,
+                 max_length=9, null=True, verbose_name='RG')),
+                ('cpf', models.CharField(blank=True,
+                 max_length=11, null=True, verbose_name='CPF')),
                 ('active', models.BooleanField(default=True, verbose_name='ativo')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='criado em')),
-                ('updated', models.DateTimeField(auto_now=True, verbose_name='modificado em')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='usuário')),
+                ('created', models.DateTimeField(
+                    auto_now_add=True, verbose_name='criado em')),
+                ('updated', models.DateTimeField(
+                    auto_now=True, verbose_name='modificado em')),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                 to=settings.AUTH_USER_MODEL, verbose_name='usuário')),
             ],
             options={
                 'verbose_name': 'Funcionário',

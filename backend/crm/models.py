@@ -4,7 +4,7 @@ from django.db import models
 
 class Customer(models.Model):
     first_name = models.CharField('nome', max_length=255)
-    last_name = models.CharField('sobrenome', max_length=255, null=True, blank=True)
+    last_name = models.CharField('sobrenome', max_length=255, null=True, blank=True)  # noqa E501
     email = models.EmailField('e-mail', max_length=254, null=True, blank=True)
     phone = models.CharField('telefone', max_length=255, null=True, blank=True)
     active = models.BooleanField('ativo', default=True)
@@ -25,8 +25,13 @@ class Customer(models.Model):
 
 
 class Employee(models.Model):
-    user = models.ForeignKey(User, verbose_name='usuário', on_delete=models.CASCADE, null=True)
-    occupation = models.CharField('cargo', max_length=255, null=True, blank=True)
+    user = models.ForeignKey(
+        User,
+        verbose_name='usuário',
+        on_delete=models.CASCADE,
+        null=True
+    )
+    occupation = models.CharField('cargo', max_length=255, null=True, blank=True)  # noqa E501
     rg = models.CharField('RG', max_length=9, null=True, blank=True)
     cpf = models.CharField('CPF', max_length=11, null=True, blank=True)
     active = models.BooleanField('ativo', default=True)

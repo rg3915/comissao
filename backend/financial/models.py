@@ -6,8 +6,16 @@ from backend.service.models import OrderItems
 
 
 class ComissionNote(models.Model):
-    created_by = models.ForeignKey(User, verbose_name='criado por', on_delete=models.CASCADE)
-    employee = models.ForeignKey(Employee, verbose_name='funcionário', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        User,
+        verbose_name='criado por',
+        on_delete=models.CASCADE
+    )
+    employee = models.ForeignKey(
+        Employee,
+        verbose_name='funcionário',
+        on_delete=models.CASCADE
+    )
     payment_date = models.DateField('data de pagamento')
     paid = models.BooleanField('pago?', default=False)
     active = models.BooleanField('ativo', default=True)
@@ -37,7 +45,12 @@ class ComissionNoteItems(models.Model):
         null=True
     )
     quantity = models.IntegerField('quantidade', null=True, default=1)
-    comission = models.DecimalField('valor da comissão', max_digits=5, decimal_places=2, default=0.0)
+    comission = models.DecimalField(
+        'valor da comissão',
+        max_digits=5,
+        decimal_places=2,
+        default=0.0
+    )
     created = models.DateTimeField('criado em', auto_now_add=True)
     updated = models.DateTimeField('modificado em', auto_now=True)
 

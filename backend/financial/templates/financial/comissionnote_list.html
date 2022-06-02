@@ -1,1 +1,100 @@
-comissionnote_list
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero is-info welcome is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Notas de Comissão
+        </h1>
+        <h2 class="subtitle">
+          Lista de Notas de Comissão
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div class="columns">
+    <div class="column is-12">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Notas de Comissão
+          </p>
+          <a
+            href="."
+            class="card-header-icon"
+            aria-label="more options"
+          >
+            <span class="icon">
+              <i
+                class="fa fa-angle-down"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="control has-icons-left has-icons-right">
+              <input
+                class="input is-large"
+                type="text"
+                placeholder=""
+              >
+              <span class="icon is-medium is-left">
+                <i class="fa fa-search"></i>
+              </span>
+              <span class="icon is-medium is-right">
+                <i class="fa fa-check"></i>
+              </span>
+              <table class="table is-fullwidth is-striped">
+                <tbody>
+                  <tr>
+                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                    <td>Lorum ipsum dolem aire</td>
+                    <td class="level-right"><a
+                      class="button is-small is-primary"
+                      href="."
+                    >Ações</a></td>
+                  </tr>
+                  <tr>
+                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                    <td>Lorum ipsum dolem aire</td>
+                    <td class="level-right"><a
+                      class="button is-small is-primary"
+                      href="."
+                    >Ações</a></td>
+                  </tr>
+                  <tr>
+                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                    <td>Lorum ipsum dolem aire</td>
+                    <td class="level-right"><a
+                      class="button is-small is-primary"
+                      href="."
+                    >Ações</a></td>
+                  </tr>
+                  <tr>
+                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                    <td>Lorum ipsum dolem aire</td>
+                    <td class="level-right"><a
+                      class="button is-small is-primary"
+                      href="."
+                    >Ações</a></td>
+                  </tr>
+                  <tr>
+                    <td width="5%"><i class="fa fa-bell-o"></i></td>
+                    <td>Lorum ipsum dolem aire</td>
+                    <td class="level-right"><a
+                      class="button is-small is-primary"
+                      href="."
+                    >Ações</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
