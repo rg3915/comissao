@@ -7,7 +7,7 @@ from financial.models import ComissionNote, ComissionNoteItems
 class ComissionNoteAdmin(admin.ModelAdmin):
     exclude = ()
 
+
 @admin.register(ComissionNoteItems)
 class ComissionNoteItemsAdmin(admin.ModelAdmin):
     exclude = ()
-

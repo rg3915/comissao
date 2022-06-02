@@ -7,7 +7,7 @@ from crm.models import Customer, Employee
 class CustomerAdmin(admin.ModelAdmin):
     exclude = ()
 
+
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
     exclude = ()
-
