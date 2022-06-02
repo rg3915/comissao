@@ -1,0 +1,32 @@
+<aside class="menu is-hidden-mobile">
+  <p class="menu-label">
+    CRM
+  </p>
+  <ul class="menu-list">
+    <li>
+      <a class="is-active" href="{% url 'crm:customer_list' %}">Cliente</a>
+    </li>
+    <li>
+      <a href="{% url 'crm:employee_list' %}">Funcionário</a>
+    </li>
+  </ul>
+  <p class="menu-label">
+    Serviços
+  </p>
+  <ul class="menu-list">
+    <li>
+      <a href="{% url 'service:service_list' %}">Serviço</a>
+    </li>
+    <li>
+      <a href="{% url 'service:order_list' %}">Ordem de Compra</a>
+    </li>
+  </ul>
+  <p class="menu-label">
+    Financeiro
+  </p>
+  <ul class="menu-list">
+    <li>
+      <a href="{% url 'financial:comission_note_list' %}">Nota de Comissão</a>
+    </li>
+  </ul>
+</aside>
