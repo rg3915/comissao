@@ -35,7 +35,7 @@ class Employee(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
-    occupation = models.CharField('cargo', max_length=255, null=True, blank=True)  # noqa E501
+    occupation = models.CharField('cargo', max_length=50, null=True, blank=True)  # noqa E501
     rg = models.CharField('RG', max_length=9, null=True, blank=True)
     cpf = models.CharField('CPF', max_length=11, null=True, blank=True)
     active = models.BooleanField('ativo', default=True)
