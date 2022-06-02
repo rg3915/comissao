@@ -2,6 +2,10 @@
 
 Sistema de Comissão de vendas e serviços feito em Django.
 
+<a href="">
+    <img src="../img/youtube.png">
+</a>
+
 ## Este projeto foi feito com:
 
 * [Python 3.10.4](https://www.python.org/)
@@ -27,3 +31,4 @@ python contrib/env_gen.py
 python manage.py migrate
 python manage.py createsuperuser --username="admin" --email=""
 ```
+
