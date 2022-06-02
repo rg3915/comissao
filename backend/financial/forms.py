@@ -8,7 +8,7 @@ class ComissionNoteForm(forms.ModelForm):
 
     class Meta:
         model = ComissionNote
-        fields = ('created_by', 'employee', 'payment_date', 'paid', 'active')
+        fields = ('created_by', 'employee', 'payment_date', 'paid')
 
     def __init__(self, *args, **kwargs):
         super(ComissionNoteForm, self).__init__(*args, **kwargs)

@@ -8,7 +8,7 @@ class EmployeeForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ('user', 'occupation', 'rg', 'cpf', 'active')
+        fields = ('user', 'occupation', 'rg', 'cpf')
 
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
@@ -21,7 +21,7 @@ class CustomerForm(forms.ModelForm):
 
     class Meta:
         model = Customer
-        fields = ('first_name', 'last_name', 'email', 'phone', 'active')
+        fields = ('first_name', 'last_name', 'email', 'phone')
 
     def __init__(self, *args, **kwargs):
         super(CustomerForm, self).__init__(*args, **kwargs)
