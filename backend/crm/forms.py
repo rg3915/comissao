@@ -10,11 +10,6 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = ('user', 'occupation', 'rg', 'cpf')
 
-    def __init__(self, *args, **kwargs):
-        super(EmployeeForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-
 
 class CustomerForm(forms.ModelForm):
     required_css_class = 'required'
@@ -22,8 +17,3 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ('first_name', 'last_name', 'email', 'phone')
-
-    def __init__(self, *args, **kwargs):
-        super(CustomerForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
