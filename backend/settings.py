@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # apps de terceiros
     'rest_framework',
     'dr_scaffold',
+    'django_extensions',
     # minhas apps
     'backend.core',
     'backend.crm',
