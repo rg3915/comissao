@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'widget_tweaks',
     # minhas apps
-    'backend.core',
     'backend.crm',
     'backend.financial',
     'backend.service',
