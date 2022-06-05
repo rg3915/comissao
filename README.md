@@ -11,7 +11,8 @@ Sistema de Comissão de vendas e serviços feito em Django.
 * [Python 3.10.4](https://www.python.org/)
 * [Django 4.0.5](https://www.djangoproject.com/)
 * [Django Rest Framework 3.13.1](https://www.django-rest-framework.org/)
-* [Bootstrap 4.0](https://getbootstrap.com/)
+* [VueJS](https://vuejs.org/)
+
 
 ## Como rodar o projeto?
 

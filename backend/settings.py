@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dr_scaffold',
     'django_extensions',
     'widget_tweaks',
+    'drf_yasg',
     # minhas apps
     'backend.crm',
     'backend.financial',
