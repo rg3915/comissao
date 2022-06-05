@@ -8,8 +8,14 @@ class ServiceAdmin(admin.ModelAdmin):
     exclude = ()
 
 
+class OrderItemsInline(admin.TabularInline):
+    model = OrderItems
+    extra = 0
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
+    inlines = (OrderItemsInline,)
     exclude = ()
 
 
