@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from backend.crm.api.serializers import CustomerSerializer, EmployeeSerializer
+from backend.crm.api.serializers import CustomerSerializer, EmployeeSerializer, EmployeeUpdateSerializer
 from backend.crm.models import Customer, Employee
 
 
@@ -11,4 +11,9 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'update' or self.action == 'partial_update':
+            return EmployeeUpdateSerializer
+
+        return EmployeeSerializer
