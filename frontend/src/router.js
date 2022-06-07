@@ -64,8 +64,13 @@ export default new Router({
         },
         {
           name: 'Serviço',
-          path: 'pages/services/service',
+          path: 'pages/services/service/:id',
           component: () => import('@/views/dashboard/pages/services/Service'),
+        },
+        {
+          name: 'Adicionar Serviço',
+          path: 'pages/services/service/add',
+          component: () => import('@/views/dashboard/pages/services/ServiceAdd'),
         },
         {
           name: 'Notas de Comissão',

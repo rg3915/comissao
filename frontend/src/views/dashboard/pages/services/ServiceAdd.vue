@@ -12,7 +12,7 @@
         <base-material-card>
           <template v-slot:heading>
             <div class="text-h3 font-weight-light">
-              Editar Serviço
+              Adicionar Serviço
             </div>
           </template>
 
@@ -80,26 +80,17 @@
   export default {
     data () {
       return {
-        item: {},
+        item: {
+          description: '',
+          price: '',
+          comission: '',
+        },
       }
     },
-    mounted () {
-      this.getData()
-    },
     methods: {
-      getData () {
-        const id = this.$route.params.id
-
-        axios.get(`/api/v1/services/${id}`)
-          .then(response => {
-            this.item = response.data
-          })
-      },
       async submitForm () {
-        const id = this.$route.params.id
-
         axios
-          .patch(`/api/v1/services/${id}/`, this.item)
+          .post('/api/v1/services/', this.item)
           .then(() => {
             this.$router.push({ name: 'Serviços' })
           })
