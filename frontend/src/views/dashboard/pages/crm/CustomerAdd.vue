@@ -12,7 +12,7 @@
         <base-material-card>
           <template v-slot:heading>
             <div class="text-h3 font-weight-light">
-              Adicionar Funcionário
+              Adicionar Cliente
             </div>
           </template>
 
@@ -24,7 +24,7 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.user.first_name"
+                    v-model="item.first_name"
                     label="Nome"
                   />
                 </v-col>
@@ -34,7 +34,7 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.user.last_name"
+                    v-model="item.last_name"
                     class="purple-input"
                     label="Sobrenome"
                   />
@@ -45,7 +45,7 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.user.email"
+                    v-model="item.email"
                     class="purple-input"
                     label="E-mail"
                   />
@@ -56,8 +56,8 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.occupation"
-                    label="Cargo"
+                    v-model="item.phone"
+                    label="Telefone"
                     class="purple-input"
                   />
                 </v-col>
@@ -67,7 +67,6 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.cpf"
                     label="CPF"
                     class="purple-input"
                   />
@@ -78,7 +77,6 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.rg"
                     label="RG"
                     class="purple-input"
                   />
@@ -146,7 +144,7 @@
       >
         <base-material-card
           class="v-card-profile"
-          avatar="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407__340.png"
+          avatar="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
         >
           <v-card-text class="text-center">
             <!-- <h6 class="text-h4 mb-1 grey--text">
@@ -154,11 +152,11 @@
             </h6> -->
 
             <h4 class="text-h3 font-weight-light mb-3 black--text">
-              {{ item.user.first_name }} {{ item.user.last_name }}
+              {{ item.first_name }} {{ item.last_name }}
             </h4>
 
             <p class="font-weight-light grey--text">
-              {{ item.user.email }}
+              {{ item.email }}
             </p>
 
             <h5>Telefones</h5>
@@ -172,7 +170,7 @@
                   Principal
                 </div>
                 <div class="text-h4 font-weight-light">
-                  97532-0000
+                  {{ item.phone }}
                 </div>
               </v-col>
 
@@ -255,27 +253,19 @@
     data () {
       return {
         item: {
-          occupation: '',
-          rg: '',
-          cpf: '',
-          user: {
-            first_name: '',
-            last_name: '',
-            email: '',
-          },
+          first_name: '',
+          last_name: '',
+          email: '',
+          phone: '',
         },
       }
     },
     methods: {
       async submitForm () {
-        const username = this.item.user.first_name.toLowerCase()
-        const item = { ...this.item }
-        item.user.username = username
-
         axios
-          .post('/api/v1/employees/', item)
+          .post('/api/v1/customers/', this.item)
           .then(() => {
-            this.$router.push({ name: 'Funcionários' })
+            this.$router.push({ name: 'Clientes' })
           })
           .catch(error => {
             console.log(error)

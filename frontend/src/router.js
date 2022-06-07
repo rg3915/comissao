@@ -43,6 +43,11 @@ export default new Router({
           component: () => import('@/views/dashboard/pages/crm/Customer'),
         },
         {
+          name: 'Adicionar Cliente',
+          path: 'pages/crm/customer/add',
+          component: () => import('@/views/dashboard/pages/crm/CustomerAdd'),
+        },
+        {
           name: 'Pedidos',
           path: 'pages/services/orders',
           component: () => import('@/views/dashboard/pages/services/Orders'),
