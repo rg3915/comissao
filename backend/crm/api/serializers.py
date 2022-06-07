@@ -33,6 +33,24 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EmployeeCreateSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Employee
+        fields = ('user', 'occupation', 'rg', 'cpf', 'active')
+
+    def create(self, validated_data):
+        # Cria user
+        if 'user' in validated_data:
+            user = validated_data.pop('user')
+
+            user = User.objects.create(**user)
+            employee = Employee.objects.create(user=user, **validated_data)
+
+        return employee
+
+
 class EmployeeUpdateSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 

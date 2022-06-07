@@ -14,10 +14,6 @@
             <div class="text-h3 font-weight-light">
               Editar Cliente
             </div>
-
-            <!-- <div class="text-subtitle-1 font-weight-light">
-              Complete your profile
-            </div> -->
           </template>
 
           <v-form @submit.prevent="submitForm">
@@ -123,14 +119,6 @@
                     type="number"
                   />
                 </v-col>
-
-                <!-- <v-col cols="12">
-                  <v-textarea
-                    class="purple-input"
-                    label="About Me"
-                    value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                  />
-                </v-col> -->
 
                 <v-col
                   cols="12"
@@ -251,13 +239,6 @@
               </v-col>
             </v-row>
 
-            <!-- <v-btn
-              color="success"
-              rounded
-              class="mr-0"
-            >
-              Follow
-            </v-btn> -->
           </v-card-text>
         </base-material-card>
       </v-col>

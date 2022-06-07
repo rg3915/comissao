@@ -12,7 +12,7 @@
         <base-material-card>
           <template v-slot:heading>
             <div class="text-h3 font-weight-light">
-              Editar Funcionário
+              Adicionar Funcionário
             </div>
           </template>
 
@@ -254,28 +254,27 @@
   export default {
     data () {
       return {
-        item: {},
+        item: {
+          occupation: '',
+          rg: '',
+          cpf: '',
+          user: {
+            first_name: '',
+            last_name: '',
+            email: '',
+          },
+        },
       }
     },
-    mounted () {
-      this.getData()
-    },
     methods: {
-      getData () {
-        const id = this.$route.params.id
-
-        axios.get(`/api/v1/employees/${id}`)
-          .then(response => {
-            this.item = response.data
-          })
-      },
       async submitForm () {
-        const id = this.$route.params.id
+        const username = this.item.user.first_name.toLowerCase()
         const item = { ...this.item }
-        delete item.user.username
+        item.user.username = username
+        console.log(item)
 
         axios
-          .patch(`/api/v1/employees/${id}/`, item)
+          .post('/api/v1/employees/', item)
           .then(() => {
             this.$router.push({ name: 'Funcionários' })
           })

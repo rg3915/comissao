@@ -4,6 +4,16 @@
     fluid
     tag="section"
   >
+    <v-btn
+      tile
+      color="primary"
+      @click="goToEmployeeAdd()"
+    >
+        <v-icon left>
+          mdi-plus
+        </v-icon>
+        Adicionar
+    </v-btn>
     <base-material-card
       icon="mdi-clipboard-text"
       title="Funcionários"
@@ -86,6 +96,9 @@
           .then(response => {
             this.items = response.data
           })
+      },
+      goToEmployeeAdd () {
+        this.$router.push({ name: 'Adicionar Funcionário' })
       },
     },
   }

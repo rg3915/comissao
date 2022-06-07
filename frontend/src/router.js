@@ -28,6 +28,11 @@ export default new Router({
           component: () => import('@/views/dashboard/pages/crm/Employee'),
         },
         {
+          name: 'Adicionar Funcionário',
+          path: 'pages/crm/employee/add',
+          component: () => import('@/views/dashboard/pages/crm/EmployeeAdd'),
+        },
+        {
           name: 'Clientes',
           path: 'pages/crm/customers',
           component: () => import('@/views/dashboard/pages/crm/Customers'),
