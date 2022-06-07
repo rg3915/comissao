@@ -16,5 +16,5 @@ router.register(r'orders', OrderViewSet)
 router.register(r'orderitem', OrderItemsViewSet)
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path('api/v1/', include(router.urls)),
 ]

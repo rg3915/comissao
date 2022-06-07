@@ -14,5 +14,5 @@ router.register(r'comissionnotes', ComissionNoteViewSet)
 router.register(r'comissionnoteitem', ComissionNoteItemsViewSet)
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path('api/v1/', include(router.urls)),
 ]
