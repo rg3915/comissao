@@ -20,38 +20,27 @@
             </div> -->
           </template>
 
-          <v-form>
+          <v-form @submit.prevent="submitForm">
             <v-container class="py-0">
               <v-row>
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
                   <v-text-field
+                    v-model="item.user.first_name"
                     label="Nome"
-                    value="Alec"
                   />
                 </v-col>
 
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
                   <v-text-field
+                    v-model="item.user.last_name"
                     class="purple-input"
                     label="Sobrenome"
-                    value="Thompson"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="Gênero"
-                    value="Masculino"
                   />
                 </v-col>
 
@@ -60,9 +49,9 @@
                   md="6"
                 >
                   <v-text-field
+                    v-model="item.user.email"
                     class="purple-input"
                     label="E-mail"
-                    value="alec@thompson.com"
                   />
                 </v-col>
 
@@ -71,7 +60,8 @@
                   md="6"
                 >
                   <v-text-field
-                    label="Data de Nascimento"
+                    v-model="item.occupation"
+                    label="Cargo"
                     class="purple-input"
                   />
                 </v-col>
@@ -81,6 +71,7 @@
                   md="6"
                 >
                   <v-text-field
+                    v-model="item.cpf"
                     label="CPF"
                     class="purple-input"
                   />
@@ -91,6 +82,7 @@
                   md="6"
                 >
                   <v-text-field
+                    v-model="item.rg"
                     label="RG"
                     class="purple-input"
                   />
@@ -149,6 +141,7 @@
                   <v-btn
                     color="success"
                     class="mr-0"
+                    type="submit"
                   >
                     Salvar
                   </v-btn>
@@ -165,7 +158,7 @@
       >
         <base-material-card
           class="v-card-profile"
-          avatar="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
+          avatar="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407__340.png"
         >
           <v-card-text class="text-center">
             <!-- <h6 class="text-h4 mb-1 grey--text">
@@ -173,11 +166,11 @@
             </h6> -->
 
             <h4 class="text-h3 font-weight-light mb-3 black--text">
-              Alec Thompson
+              {{ item.user.first_name }} {{ item.user.last_name }}
             </h4>
 
             <p class="font-weight-light grey--text">
-              alec@thompson.com
+              {{ item.user.email }}
             </p>
 
             <h5>Telefones</h5>
@@ -275,7 +268,40 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
-    //
+    data () {
+      return {
+        item: {},
+      }
+    },
+    mounted () {
+      this.getData()
+    },
+    methods: {
+      getData () {
+        const id = this.$route.params.id
+
+        axios.get(`/api/v1/employees/${id}`)
+          .then(response => {
+            this.item = response.data
+          })
+      },
+      async submitForm () {
+        const id = this.$route.params.id
+        const item = { ...this.item }
+        delete item.user.username
+
+        axios
+          .patch(`/api/v1/employees/${id}/`, item)
+          .then(() => {
+            this.$router.push({ name: 'Funcionários' })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
+    },
   }
 </script>

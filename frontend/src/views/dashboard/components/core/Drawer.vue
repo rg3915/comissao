@@ -76,15 +76,6 @@
       <div />
     </v-list>
 
-    <!-- <template v-slot:append>
-      <base-item
-        :item="{
-          title: $t('upgrade'),
-          icon: 'mdi-package-up',
-          to: '/upgrade',
-        }"
-      />
-    </template> -->
   </v-navigation-drawer>
 </template>
 
@@ -106,41 +97,6 @@
 
     data: () => ({
       items: [
-        /* {
-          icon: 'mdi-view-dashboard',
-          title: 'dashboard',
-          to: '/',
-        },
-        {
-          icon: 'mdi-account',
-          title: 'user',
-          to: '/pages/user',
-        },
-        {
-          title: 'rtables',
-          icon: 'mdi-clipboard-outline',
-          to: '/tables/regular-tables',
-        }, */
-        /* {
-          title: 'typography',
-          icon: 'mdi-format-font',
-          to: '/components/typography',
-        },
-        {
-          title: 'icons',
-          icon: 'mdi-chart-bubble',
-          to: '/components/icons',
-        },
-        {
-          title: 'google',
-          icon: 'mdi-map-marker',
-          to: '/maps/google-maps',
-        },
-        {
-          title: 'notifications',
-          icon: 'mdi-bell',
-          to: '/components/notifications',
-        }, */
         {
           title: 'Funcionários',
           icon: 'mdi-account',
@@ -152,11 +108,6 @@
           to: '/pages/crm/customers',
         },
         {
-          title: 'Fornecedores',
-          icon: 'mdi-account-outline',
-          to: '/pages/crm/providers',
-        },
-        {
           title: 'Pedidos',
           icon: 'mdi-clipboard-outline',
           to: '/pages/services/orders',
@@ -165,56 +116,6 @@
           title: 'Serviços',
           icon: 'mdi-hair-dryer',
           to: '/pages/services/services',
-        },
-        {
-          title: 'Tipos de Avaliação',
-          icon: 'mdi-clipboard-edit-outline',
-          to: '/pages/services/evaluation-types',
-        },
-        {
-          title: 'Produtos',
-          icon: 'mdi-content-cut',
-          to: '/pages/product/products',
-        },
-        {
-          title: 'Kits',
-          icon: 'mdi-chart-bubble',
-          to: '/pages/product/kits',
-        },
-        {
-          title: 'Estoque Entrada',
-          icon: 'mdi-arrow-up-bold-box',
-          to: '/pages/stock/stock-entry',
-        },
-        {
-          title: 'Estoque Saída',
-          icon: 'mdi-arrow-down-bold-box',
-          to: '/pages/stock/stock-exit',
-        },
-        {
-          title: 'Pagamentos',
-          icon: 'mdi-currency-usd',
-          to: '/pages/financial/receivables',
-        },
-        {
-          title: 'Despesas',
-          icon: 'mdi-currency-usd',
-          to: '/pages/financial/expenses',
-        },
-        {
-          title: 'Bancos',
-          icon: 'mdi-bank',
-          to: '/pages/financial/bank-accounts',
-        },
-        {
-          title: 'Tipos de Despesas',
-          icon: 'mdi-attachment',
-          to: '/pages/financial/expense-types',
-        },
-        {
-          title: 'Categorias de Despesas',
-          icon: 'mdi-gamma',
-          to: '/pages/financial/expense-categories',
         },
         {
           title: 'Notas de Comissão',

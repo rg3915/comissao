@@ -15,43 +15,32 @@
               Editar Cliente
             </div>
 
-            <!-- <div class="text-subtext-h6-1 font-weight-light">
+            <!-- <div class="text-subtitle-1 font-weight-light">
               Complete your profile
             </div> -->
           </template>
 
-          <v-form>
+          <v-form @submit.prevent="submitForm">
             <v-container class="py-0">
               <v-row>
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
                   <v-text-field
+                    v-model="item.first_name"
                     label="Nome"
-                    value="Allison"
                   />
                 </v-col>
 
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
                   <v-text-field
+                    v-model="item.last_name"
                     class="purple-input"
                     label="Sobrenome"
-                    value="Watkins"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="Gênero"
-                    value="Masculino"
                   />
                 </v-col>
 
@@ -60,9 +49,9 @@
                   md="6"
                 >
                   <v-text-field
+                    v-model="item.email"
                     class="purple-input"
                     label="E-mail"
-                    value="alisson@thompson.com"
                   />
                 </v-col>
 
@@ -71,7 +60,8 @@
                   md="6"
                 >
                   <v-text-field
-                    label="Data de Nascimento"
+                    v-model="item.phone"
+                    label="Telefone"
                     class="purple-input"
                   />
                 </v-col>
@@ -134,47 +124,6 @@
                   />
                 </v-col>
 
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="Responsável"
-                    value=""
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    label="Data de Nascimento"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    label="CPF"
-                    class="purple-input"
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="6"
-                >
-                  <v-text-field
-                    label="RG"
-                    class="purple-input"
-                  />
-                </v-col>
-
                 <!-- <v-col cols="12">
                   <v-textarea
                     class="purple-input"
@@ -190,6 +139,7 @@
                   <v-btn
                     color="success"
                     class="mr-0"
+                    type="submit"
                   >
                     Salvar
                   </v-btn>
@@ -206,7 +156,7 @@
       >
         <base-material-card
           class="v-card-profile"
-          avatar="https://randomuser.me/api/portraits/men/26.jpg"
+          avatar="https://demos.creative-tim.com/vue-material-dashboard/img/marc.aba54d65.jpg"
         >
           <v-card-text class="text-center">
             <!-- <h6 class="text-h4 mb-1 grey--text">
@@ -214,15 +164,11 @@
             </h6> -->
 
             <h4 class="text-h3 font-weight-light mb-3 black--text">
-              Allison Watkins
+              {{ item.first_name }}
             </h4>
 
             <p class="font-weight-light grey--text">
-              allison@watkins.com
-            </p>
-
-            <p class="font-weight-light grey--text">
-              Indicado por Rose Martins.
+              {{ item.email }}
             </p>
 
             <h5>Telefones</h5>
@@ -236,7 +182,7 @@
                   Principal
                 </div>
                 <div class="text-h4 font-weight-light">
-                  97532-0000
+                  {{ item.phone }}
                 </div>
               </v-col>
 
@@ -250,18 +196,6 @@
                 <div class="text-h4 font-weight-light">
                   6082-3466
                 </div>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col>
-                <v-btn
-                  color="info"
-                  class="mr-0"
-                  @click="dialog = true"
-                >
-                  Avaliação
-                </v-btn>
               </v-col>
             </v-row>
 
@@ -328,117 +262,42 @@
         </base-material-card>
       </v-col>
     </v-row>
-
-    <v-dialog
-      v-model="dialog"
-      max-width="500"
-    >
-      <v-card class="text-center">
-        <v-card-text-h6>
-          Avaliação do Cliente
-
-          <v-spacer />
-
-          <v-icon
-            aria-label="Close"
-            @click="dialog = false"
-          >
-            mdi-close
-          </v-icon>
-        </v-card-text-h6>
-
-        <v-simple-table>
-          <thead>
-            <tr>
-              <th class="primary--text">
-                Tipo de Avaliação
-              </th>
-              <th class="text-right primary--text">
-                Resposta
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr
-              v-for="item in evaluations"
-              :key="item"
-            >
-              <td class="text-left">
-                {{ item.description }}
-              </td>
-              <td v-if="item.response">
-                <v-icon
-                  class="mx-1"
-                  style="color: green"
-                >
-                  mdi-check
-                </v-icon>
-              </td>
-              <td v-else>
-                <v-icon
-                  class="mx-1"
-                  style="color: red"
-                >
-                  mdi-close
-                </v-icon>
-              </td>
-            </tr>
-          </tbody>
-        </v-simple-table>
-
-        <v-card-actions>
-          <v-spacer />
-
-          <v-btn
-            color="error"
-            text
-            @click="dialog = false"
-          >
-            Fechar
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-container>
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data () {
       return {
-        evaluations: [
-          {
-            description: 'Está de rimel',
-            response: true,
-          },
-          {
-            description: 'Alergia a esmalte ou cosméticos',
-            response: false,
-          },
-          {
-            description: 'Problemas de tireóide',
-            response: false,
-          },
-          {
-            description: 'Algum procedimento feito recentemente nos olhos',
-            response: false,
-          },
-          {
-            description: 'Glaucoma/blefarite/algum problema ocular',
-            response: true,
-          },
-          {
-            description: 'Grávida',
-            response: false,
-          },
-          {
-            description: 'Tratamento oncológico',
-            response: true,
-          },
-        ],
-        dialog: false,
+        item: {},
       }
+    },
+    mounted () {
+      this.getData()
+    },
+    methods: {
+      getData () {
+        const id = this.$route.params.id
+
+        axios.get(`/api/v1/customers/${id}`)
+          .then(response => {
+            this.item = response.data
+          })
+      },
+      async submitForm () {
+        const id = this.$route.params.id
+
+        axios
+          .patch(`/api/v1/customers/${id}/`, this.item)
+          .then(() => {
+            this.$router.push({ name: 'Clientes' })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
     },
   }
 </script>

@@ -29,7 +29,7 @@
           md="auto"
         >
           <div class="text-body-1 font-weight-light pt-6 pt-md-0 text-center">
-            &copy; 2021, made by <a href="">RG Pro</a>
+            &copy; 2022, made by <a href="https://www.youtube.com/c/RegisdoPython">Regis do Python</a>
           </div>
         </v-col>
       </v-row>

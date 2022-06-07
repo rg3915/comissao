@@ -5,3 +5,4 @@ dr-scaffold==2.1.2
 python-decouple==3.6
 django-widget-tweaks==1.4.12
 drf-yasg==1.20.0
+django-cors-headers==3.13.0
