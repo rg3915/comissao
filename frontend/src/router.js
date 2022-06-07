@@ -70,12 +70,12 @@ export default new Router({
         {
           name: 'Notas de Comissão',
           path: 'pages/financial/comission-notes',
-          component: () => import('@/views/dashboard/pages/financial/notes/ComissionNotes'),
+          component: () => import('@/views/dashboard/pages/financial/ComissionNotes'),
         },
         {
           name: 'Nota de Comissão',
           path: 'pages/financial/comission-note',
-          component: () => import('@/views/dashboard/pages/financial/notes/ComissionNote'),
+          component: () => import('@/views/dashboard/pages/financial/ComissionNote'),
         },
       ],
     },

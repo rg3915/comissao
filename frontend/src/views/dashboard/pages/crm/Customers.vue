@@ -60,27 +60,32 @@
       return {
         items: [
           {
-            name: 'Alec Thompson',
+            first_name: 'Alec',
+            last_name: 'Thompson',
             email: 'alec@thompson.com',
             phone: '97031-0000',
           },
           {
-            name: 'Priscila Jones',
+            first_name: 'Priscila',
+            last_name: 'Jones',
             email: 'priscila@jones.com',
             phone: '91310-0101',
           },
           {
-            name: 'Sage Rodriguez',
+            first_name: 'Sage',
+            last_name: 'Rodriguez',
             email: 'sage@rodriguez.com',
             phone: '94600-7600',
           },
           {
-            name: 'Philip Chaney',
+            first_name: 'Philip',
+            last_name: 'Chaney',
             email: 'philip@chaney.com',
             phone: '98730-0050',
           },
           {
-            name: 'Doris Green',
+            first_name: 'Doris',
+            last_name: 'Green',
             email: 'doris@green.com',
             phone: '95300-4503',
           },
@@ -94,7 +99,9 @@
       getData () {
         axios.get('/api/v1/customers/')
           .then(response => {
-            this.items = response.data
+            if (response.data.length) {
+              this.items = response.data
+            }
           })
       },
       goToEmployeeAdd () {

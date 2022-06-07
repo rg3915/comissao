@@ -60,29 +60,44 @@
       return {
         items: [
           {
-            name: 'Alec Thompson',
-            email: 'alec@thompson.com',
-            phone: '97031-0000',
+            user: {
+              first_name: 'Alec',
+              last_name: 'Thompson',
+              email: 'alec@thompson.com',
+            },
+            occupation: 'Cabelereiro',
           },
           {
-            name: 'Priscila Jones',
-            email: 'priscila@jones.com',
-            phone: '91310-0101',
+            user: {
+              first_name: 'Priscila',
+              last_name: 'Jones',
+              email: 'priscila@jones.com',
+            },
+            occupation: 'Maquiador',
           },
           {
-            name: 'Sage Rodriguez',
-            email: 'sage@rodriguez.com',
-            phone: '94600-7600',
+            user: {
+              first_name: 'Sage',
+              last_name: 'Rodriguez',
+              email: 'sage@rodriguez.com',
+            },
+            occupation: 'Manicure',
           },
           {
-            name: 'Philip Chaney',
-            email: 'philip@chaney.com',
-            phone: '98730-0050',
+            user: {
+              first_name: 'Philip',
+              last_name: 'Chaney',
+              email: 'philip@chaney.com',
+            },
+            occupation: 'Cabelereiro',
           },
           {
-            name: 'Doris Green',
-            email: 'doris@green.com',
-            phone: '95300-4503',
+            user: {
+              first_name: 'Doris',
+              last_name: 'Green',
+              email: 'doris@green.com',
+            },
+            occupation: 'Depiladora',
           },
         ],
       }
@@ -94,7 +109,11 @@
       getData () {
         axios.get('/api/v1/employees/')
           .then(response => {
-            this.items = response.data
+            console.log(response.data)
+            console.log(response.data.length)
+            if (response.data.length) {
+              this.items = response.data
+            }
           })
       },
       goToEmployeeAdd () {

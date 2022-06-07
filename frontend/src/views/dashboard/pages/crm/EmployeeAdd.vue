@@ -84,7 +84,7 @@
                   />
                 </v-col>
 
-                <v-col cols="12">
+                <!-- <v-col cols="12">
                   <v-text-field
                     label="Endereço"
                     class="purple-input"
@@ -120,7 +120,7 @@
                     label="CEP"
                     type="number"
                   />
-                </v-col>
+                </v-col> -->
 
                 <v-col
                   cols="12"

@@ -62,7 +62,7 @@
                   />
                 </v-col>
 
-                <v-col
+                <!-- <v-col
                   cols="12"
                   md="6"
                 >
@@ -118,7 +118,7 @@
                     label="CEP"
                     type="number"
                   />
-                </v-col>
+                </v-col> -->
 
                 <v-col
                   cols="12"
