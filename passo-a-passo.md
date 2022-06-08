@@ -179,7 +179,7 @@ segundo George Pólya
         * created
         * modified
 
-![diagrama_ER.png](diagrama_ER.png)
+![](img/diagrama_ER.png)
 
 ### Criando o ambiente
 
