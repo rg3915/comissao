@@ -84,7 +84,7 @@ export default new Router({
         },
         {
           name: 'Nota de Comissão',
-          path: 'pages/financial/comission-note',
+          path: 'pages/financial/comission-notes/:id',
           component: () => import('@/views/dashboard/pages/financial/ComissionNote'),
         },
       ],

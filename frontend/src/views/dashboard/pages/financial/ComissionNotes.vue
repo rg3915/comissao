@@ -4,25 +4,30 @@
     fluid
     tag="section"
   >
-    <base-material-card
-      icon="mdi-clipboard-text"
-      title="Notas de Pagamento da Comissão"
-      class="px-5 py-3"
-    >
+    <base-material-card>
+      <template v-slot:heading>
+        <div class="text-h3 font-weight-light">
+          Notas de Pagamento da Comissão
+        </div>
+
+        <div class="text-subtitle-1 font-weight-light">
+          Para gerar uma Nota de Comissão escolha um Pedido e clique em "Gerar Nota de Comissão".
+        </div>
+      </template>
       <v-simple-table>
         <thead>
           <tr>
             <th class="primary--text">
+              Nº
+            </th>
+            <th class="primary--text">
               Funcionário
             </th>
             <th class="primary--text text-center">
-              Data
+              Data de Pagamento
             </th>
-            <th class="primary--text text-right">
-              Valor
-            </th>
-            <th class="text-right primary--text">
-              Editar
+            <th class="text-center primary--text">
+              Pago
             </th>
           </tr>
         </thead>
@@ -33,15 +38,34 @@
             :key="item"
           >
             <td>
-              <a href="#/pages/financial/comission-note">{{ item.employee }}</a>
+              <router-link :to="{ name: 'Nota de Comissão', params: { id: item.id }}">{{ item.id|pk }}</router-link>
+            </td>
+            <td>
+              {{ item.employee.user.first_name }} {{ item.employee.user.last_name }}
             </td>
             <td class="text-center">
-              {{ item.payment_date }}
+              {{ item.payment_date|formatDate }}
             </td>
-            <td>R$ <span class="float-right">{{ item.value }}</span></td>
-            <td class="text-right">
-              <v-icon class="mx-1">
-                mdi-pencil
+            <td
+              class="text-center"
+              v-if="item.paid"
+            >
+              <v-icon
+                class="mx-1"
+                style="color: green"
+              >
+                mdi-check-bold
+              </v-icon>
+            </td>
+            <td
+              class="text-center"
+              v-else
+            >
+              <v-icon
+                class="mx-1"
+                style="color: red"
+              >
+                mdi-close
               </v-icon>
             </td>
           </tr>
@@ -52,52 +76,43 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data () {
       return {
-        items: [
-          {
-            employee: 'Brenda Lawson',
-            payment_date: '30/10/2020',
-            value: 680.99,
-          },
-          {
-            employee: 'Christopher Mcpherson',
-            payment_date: '30/10/2020',
-            value: 670.99,
-          },
-          {
-            employee: 'Crystal Snyder',
-            payment_date: '30/10/2020',
-            value: 700.99,
-          },
-          {
-            employee: 'David Valentine',
-            payment_date: '30/10/2020',
-            value: 980.99,
-          },
-          {
-            employee: 'Donna Smith',
-            payment_date: '30/10/2020',
-            value: 1250.99,
-          },
-          {
-            employee: 'Jason Schmidt',
-            payment_date: '30/10/2020',
-            value: 354.99,
-          },
-          {
-            employee: 'John Williams',
-            payment_date: '30/10/2020',
-            value: 320.99,
-          },
-          {
-            employee: 'Michelle Hill',
-            payment_date: '30/10/2020',
-            value: 1380.99,
-          },
-        ],
+        items: [],
       }
+    },
+    mounted () {
+      this.getData()
+    },
+    methods: {
+      getData () {
+        axios.get('/api/v1/comissionnotes/')
+          .then(response => {
+            if (response.data.length) {
+              this.items = response.data
+            }
+          })
+        console.log(this.items)
+      },
+    },
+    filters: {
+      pk (id) {
+        if (id < 10) {
+          return `00${id}`
+        }
+        if (id < 100) {
+          return `0${id}`
+        }
+        return id
+      },
+      formatDate (date) {
+        const string = date.split('-')
+        const day = string[2].split('T')[0]
+        return `${day}/${string[1]}/${string[0]}`
+      },
     },
   }
 </script>
