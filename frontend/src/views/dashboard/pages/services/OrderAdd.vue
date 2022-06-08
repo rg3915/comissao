@@ -15,10 +15,8 @@
               Adicionar Pedido
             </div>
 
-            <div class="text-subtitle-1 font-weight-light">
-              Nº 001 - nome <br>
-              07/06/2022
-            </div>
+            <!-- <div class="text-subtitle-1 font-weight-light">
+            </div> -->
           </template>
 
           <v-form @submit.prevent="submitForm">
@@ -149,6 +147,9 @@
                     class="mr-0 float-right"
                     @click="addOrderItem()"
                   >
+                    <v-icon left>
+                      mdi-plus
+                    </v-icon>
                     Adicionar
                   </v-btn>
                 </td>
