@@ -33,3 +33,13 @@ python manage.py migrate
 python manage.py createsuperuser --username="admin" --email=""
 ```
 
+## Frontend
+
+Entrar na pasta `frontend` e instalar as dependências do VueJS.
+
+```
+cd frontend
+npm install
+
+npm run serve
+```
