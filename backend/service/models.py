@@ -74,9 +74,6 @@ class Order(models.Model):
     def __str__(self):
         return f'{str(self.pk).zfill(3)}'
 
-    def get_absolute_url(self):
-        return reverse_lazy('service:order_detail', kwargs={'pk': self.pk})
-
 
 class OrderItems(models.Model):
     order = models.ForeignKey(

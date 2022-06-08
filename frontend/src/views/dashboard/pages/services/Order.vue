@@ -16,54 +16,44 @@
             </div>
 
             <div class="text-subtitle-1 font-weight-light">
-              Nº 001 - 30/10/20 - Alec Thompson
+              Nº {{ item.id|pk }} - {{ item.customer.first_name }} {{ item.customer.last_name }} <br>
+              {{ item.created|formatDate }}
             </div>
           </template>
 
-          <v-form>
+          <v-form @submit.prevent="submitForm">
             <v-container class="py-0">
               <v-row>
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
                   <v-text-field
-                    label="Data"
-                    disabled
+                    v-model="item.value"
+                    class="purple-input"
+                    label="Valor"
                   />
                 </v-col>
 
                 <v-col
                   cols="12"
-                  md="4"
+                  md="6"
                 >
-                  <v-text-field
-                    class="purple-input"
-                    label="Hora Início"
-                    disabled
-                  />
-                </v-col>
-
-                <v-col
-                  cols="12"
-                  md="4"
-                >
-                  <v-text-field
-                    class="purple-input"
-                    label="Hora Final"
-                    disabled
-                  />
+                  <v-checkbox
+                    v-model="item.paid"
+                    label="Pago?"
+                  ></v-checkbox>
                 </v-col>
 
                 <v-col
                   cols="12"
                   md="12"
                 >
-                  <v-text-field
-                    label="Cliente"
-                    class="purple-input"
-                    disabled
-                  />
+                <v-select
+                  v-model="item.customer.id"
+                  label="Cliente"
+                  :items="customers"
+                  ></v-select>
                 </v-col>
 
                 <v-col
@@ -73,6 +63,7 @@
                   <v-btn
                     color="success"
                     class="mr-0"
+                    type="submit"
                   >
                     Salvar
                   </v-btn>
@@ -112,19 +103,19 @@
 
             <tbody>
               <tr
-                v-for="item in items"
+                v-for="item in item.order_items"
                 :key="item.id"
               >
                 <td class="text-center">
                   {{ item.quantity }}
                 </td>
-                <td>{{ item.service }}</td>
-                <td>R$ <span class="float-right">{{ item.value }}</span></td>
+                <td>{{ item.service.description }}</td>
+                <td>R$ <span class="float-right">{{ item.price }}</span></td>
                 <td>
-                  <s>{{ item.employee }}</s>
+                  {{ item.employee.user.first_name }} {{ item.employee.user.last_name }}
                 </td>
-                <td>
-                  <s>{{ item.comission }}%</s>
+                <td class="text-right">
+                  {{ item.comission_employee|percentage }}%
                 </td>
               </tr>
             </tbody>
@@ -138,7 +129,7 @@
                   Total
                 </td>
                 <td class="text-h3">
-                  R$ <span class="float-right">197,98</span>
+                  R$ <span class="float-right">{{ total }}</span>
                 </td>
                 <td>
                   <v-btn
@@ -150,11 +141,20 @@
                   </v-btn>
                 </td>
                 <td class="text-h3 font-weight-light text--primary">
-                  <small>Pago?</small> <v-icon
+                  <small>Pago?</small>
+                  <v-icon
                     class="mx-1"
                     style="color: green"
+                    v-if="item.paid"
                   >
                     mdi-check-bold
+                  </v-icon>
+                  <v-icon
+                    class="mx-1"
+                    style="color: red"
+                    v-else
+                  >
+                    mdi-close
                   </v-icon>
                 </td>
               </tr>
@@ -163,104 +163,6 @@
         </base-material-card>
       </v-col>
 
-      <v-col
-        cols="12"
-        md="4"
-      >
-        <base-material-card>
-          <template v-slot:heading>
-            <div class="text-h4 font-weight-light">
-              Avaliação do Cliente
-            </div>
-          </template>
-
-          <v-card-text class="text-center">
-            <v-simple-table>
-              <thead>
-                <tr>
-                  <th class="primary--text">
-                    Avaliação
-                  </th>
-                  <th class="text-right primary--text">
-                    Resposta
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr
-                  v-for="item in evaluations"
-                  :key="item.id"
-                >
-                  <td class="text-left">
-                    {{ item.description }}
-                  </td>
-                  <td v-if="item.response">
-                    <v-icon
-                      class="mx-1"
-                      style="color: green"
-                    >
-                      mdi-check
-                    </v-icon>
-                  </td>
-                  <td v-else>
-                    <v-icon
-                      class="mx-1"
-                      style="color: red"
-                    >
-                      mdi-close
-                    </v-icon>
-                  </td>
-                </tr>
-              </tbody>
-            </v-simple-table>
-
-            <h4 class="text-left ">
-              Avaliação Adicional
-            </h4>
-
-            <v-simple-table>
-              <thead>
-                <tr>
-                  <th class="primary--text">
-                    Avaliação
-                  </th>
-                  <th class="text-right primary--text">
-                    Resposta
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr
-                  v-for="item in aditional_evaluations"
-                  :key="item.id"
-                >
-                  <td class="text-left">
-                    {{ item.description }}
-                  </td>
-                  <td v-if="item.response">
-                    <v-icon
-                      class="mx-1"
-                      style="color: green"
-                    >
-                      mdi-check
-                    </v-icon>
-                  </td>
-                  <td v-else>
-                    <v-icon
-                      class="mx-1"
-                      style="color: red"
-                    >
-                      mdi-close
-                    </v-icon>
-                  </td>
-                </tr>
-              </tbody>
-            </v-simple-table>
-          </v-card-text>
-        </base-material-card>
-      </v-col>
     </v-row>
 
     <v-dialog
@@ -270,15 +172,15 @@
       <v-card class="text-center">
         <v-card-title>
           <div>
-            <strong>Pedido: 001</strong>
+            <strong>Pedido: {{ item.id|pk }}</strong>
           </div>
 
           <div>
-            <strong>Cliente: Alec Thompson</strong>
+            <strong>Cliente: {{ item.customer.first_name }} {{ item.customer.last_name }}</strong>
           </div>
 
           <div>
-            <strong>Data: 30/10/2020</strong>
+            <strong>Data: {{ item.created|formatDate }}</strong>
           </div>
 
           <v-spacer />
@@ -295,15 +197,15 @@
           <tbody>
             <tr>
               <td>Total a pagar</td>
-              <td>R$ <span class="float-right">120,00</span></td>
+              <td>R$ <span class="float-right">{{ total }}</span></td>
             </tr>
             <tr>
               <td>Pago</td>
-              <td>R$ <span class="float-right">150,00</span></td>
+              <td>R$ <span class="float-right">NaN <v-icon>mdi-emoticon-poop</v-icon></span></td>
             </tr>
             <tr>
               <td>Troco</td>
-              <td>R$ <span class="float-right">30,00</span></td>
+              <td>R$ <span class="float-right">NaN <v-icon>mdi-emoticon-poop</v-icon></span></td>
             </tr>
           </tbody>
         </v-simple-table>
@@ -325,77 +227,79 @@
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     data () {
       return {
         dialog: false,
-        items: [
-          {
-            id: 1,
-            quantity: 1,
-            service: 'Sobrancelha',
-            value: 60.01,
-            employee: 'Dona Watson',
-            comission: 30,
-          },
-          {
-            id: 2,
-            quantity: 1,
-            service: 'Depilação',
-            value: 79.99,
-            employee: 'Mara Lens',
-            comission: 30,
-          },
-          {
-            id: 3,
-            quantity: 1,
-            service: 'Mão',
-            value: 23.99,
-            employee: 'Jennifer Adrian',
-            comission: 25,
-          },
-          {
-            id: 4,
-            quantity: 1,
-            service: 'Pé',
-            value: 33.99,
-            employee: 'Jennifer Adrian',
-            comission: 30,
-          },
-        ],
-        evaluations: [
-          {
-            description: 'Alergia a esmalte ou cosméticos',
-            response: false,
-          },
-          {
-            description: 'Problemas de tireóide',
-            response: false,
-          },
-          {
-            description: 'Glaucoma/blefarite/algum problema ocular',
-            response: true,
-          },
-          {
-            description: 'Tratamento oncológico',
-            response: true,
-          },
-        ],
-        aditional_evaluations: [
-          {
-            description: 'Está de rimel',
-            response: true,
-          },
-          {
-            description: 'Algum procedimento feito recentemente nos olhos',
-            response: false,
-          },
-          {
-            description: 'Grávida',
-            response: false,
-          },
-        ],
+        item: {},
+        customer_selected: {},
+        customers: [],
       }
+    },
+    mounted () {
+      this.getData()
+      this.getCustomers()
+    },
+    computed: {
+      total () {
+        return this.item.order_items.reduce((acc, item) => acc + parseFloat(item.price), 0)
+      },
+    },
+    methods: {
+      getData () {
+        const id = this.$route.params.id
+
+        axios.get(`/api/v1/orders/${id}`)
+          .then(response => {
+            this.item = response.data
+          })
+      },
+      getCustomers () {
+        axios.get('/api/v1/customers')
+          .then(response => {
+            this.customers = response.data.map(obj => {
+              return {
+                value: obj.id,
+                text: `${obj.first_name} ${obj.last_name}`,
+              }
+            })
+          })
+      },
+      async submitForm () {
+        const id = this.$route.params.id
+        const item = { ...this.item }
+        item.customer = item.customer.id
+
+        axios
+          .patch(`/api/v1/orders/${id}/`, item)
+          .then(() => {
+            this.$router.push({ name: 'Pedidos' })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
+    },
+    filters: {
+      pk (id) {
+        if (id < 10) {
+          return `00${id}`
+        }
+        if (id < 100) {
+          return `0${id}`
+        }
+        return id
+      },
+      percentage (comission) {
+        return comission * 100
+      },
+      formatDate (date) {
+        const string = date.split('-')
+        const day = string[2].split('T')[0]
+        return `${day}/${string[1]}/${string[0]}`
+      },
     },
   }
 </script>

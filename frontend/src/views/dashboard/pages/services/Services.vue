@@ -7,7 +7,7 @@
     <v-btn
       tile
       color="primary"
-      @click="goToCustomerAdd()"
+      @click="goToServiceAdd()"
     >
         <v-icon left>
           mdi-plus
@@ -98,7 +98,7 @@
             }
           })
       },
-      goToCustomerAdd () {
+      goToServiceAdd () {
         this.$router.push({ name: 'Adicionar Serviço' })
       },
     },

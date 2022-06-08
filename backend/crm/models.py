@@ -24,9 +24,6 @@ class Customer(models.Model):
     def __str__(self):
         return self.full_name
 
-    def get_absolute_url(self):
-        return reverse_lazy('crm:customer_detail', kwargs={'pk': self.pk})
-
 
 class Employee(models.Model):
     user = models.ForeignKey(
@@ -49,6 +46,3 @@ class Employee(models.Model):
 
     def __str__(self):
         return f'{self.user.get_full_name()}'
-
-    def get_absolute_url(self):
-        return reverse_lazy('crm:employee_detail', kwargs={'pk': self.pk})

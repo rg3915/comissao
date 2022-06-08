@@ -26,11 +26,11 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
 
     class Meta:
         model = Employee
         fields = '__all__'
+        depth = 1
 
 
 class EmployeeCreateSerializer(serializers.ModelSerializer):

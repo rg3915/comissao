@@ -108,14 +108,14 @@
           to: '/pages/crm/customers',
         },
         {
-          title: 'Pedidos',
-          icon: 'mdi-clipboard-outline',
-          to: '/pages/services/orders',
-        },
-        {
           title: 'Serviços',
           icon: 'mdi-hair-dryer',
           to: '/pages/services/services',
+        },
+        {
+          title: 'Pedidos',
+          icon: 'mdi-clipboard-outline',
+          to: '/pages/services/orders',
         },
         {
           title: 'Notas de Comissão',

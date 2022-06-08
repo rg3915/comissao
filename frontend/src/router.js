@@ -54,8 +54,13 @@ export default new Router({
         },
         {
           name: 'Pedido',
-          path: 'pages/services/order',
+          path: 'pages/services/order/:id',
           component: () => import('@/views/dashboard/pages/services/Order'),
+        },
+        {
+          name: 'Adicionar Pedido',
+          path: 'pages/services/order/add',
+          component: () => import('@/views/dashboard/pages/services/OrderAdd'),
         },
         {
           name: 'Serviços',

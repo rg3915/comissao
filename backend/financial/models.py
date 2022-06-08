@@ -31,9 +31,6 @@ class ComissionNote(models.Model):
     def __str__(self):
         return f'{str(self.pk).zfill(3)}'
 
-    def get_absolute_url(self):
-        return reverse_lazy('financial:comission_note_detail', kwargs={'pk': self.pk})
-
 
 class ComissionNoteItems(models.Model):
     comission_note = models.ForeignKey(
