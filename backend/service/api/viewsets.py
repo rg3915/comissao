@@ -1,5 +1,9 @@
+from django.contrib.auth.models import User
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
+from backend.financial.models import ComissionNote, ComissionNoteItems
 from backend.service.api.serializers import (
     OrderCreateSerializer,
     OrderItemsSerializer,
@@ -36,6 +40,43 @@ class OrderViewSet(viewsets.ModelViewSet):
         # Salva os Itens do Pedido.
         for item in order_items:
             OrderItems.objects.create(**item, order=order)
+
+    @action(detail=True, methods=['post'])
+    def generate_comission_note(self, request, pk=None):
+        '''
+        Gera Notas de Comissão para cada Funcionário a partir do Pedido selecionado.
+        '''
+        order = self.get_object()
+        order_items = order.orderitems_set.all()
+        comission_note_items = ComissionNoteItems.objects.values_list(
+            'order_items', flat=True)
+
+        for item in order_items:
+            if item.pk not in comission_note_items:
+                cn = ComissionNote.objects.filter(
+                    employee=item.employee, paid=False).first()
+                if cn:
+                    ComissionNoteItems.objects.create(
+                        comission_note=cn,
+                        order_items=item,
+                        quantity=item.quantity,
+                        comission=item.price * item.comission_employee
+                    )
+                else:
+                    # Cria as Notas de Comissão.
+                    comission_note = ComissionNote.objects.create(
+                        employee=item.employee,
+                        created_by=User.objects.first()
+                    )
+
+                    ComissionNoteItems.objects.create(
+                        comission_note=comission_note,
+                        order_items=item,
+                        quantity=item.quantity,
+                        comission=item.price * item.comission_employee
+                    )
+
+        return Response({})
 
 
 class OrderItemsViewSet(viewsets.ModelViewSet):

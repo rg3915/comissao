@@ -122,24 +122,6 @@
 
             <tfoot>
               <tr>
-                <td
-                  class="text-h3 text-right"
-                  colspan="2"
-                >
-                  Total
-                </td>
-                <td class="text-h3">
-                  R$ <span class="float-right">{{ total }}</span>
-                </td>
-                <td>
-                  <v-btn
-                    color="primary"
-                    class="mr-0"
-                    @click="dialog = true"
-                  >
-                    Pagar
-                  </v-btn>
-                </td>
                 <td class="text-h3 font-weight-light text--primary">
                   <small>Pago?</small>
                   <v-icon
@@ -156,6 +138,30 @@
                   >
                     mdi-close
                   </v-icon>
+                </td>
+                <td class="text-h3 text-right">
+                  Total
+                </td>
+                <td class="text-h3">
+                  R$ <span class="float-right">{{ total }}</span>
+                </td>
+                <td class="text-right">
+                  <v-btn
+                    color="warning"
+                    class="mr-0"
+                    @click="dialog = true"
+                  >
+                    Pagar
+                  </v-btn>
+                </td>
+                <td class="text-right">
+                  <v-btn
+                    color="indigo"
+                    class="mr-0"
+                    @click="generateComissionNote()"
+                  >
+                    Gerar Nota de Comissão
+                  </v-btn>
                 </td>
               </tr>
             </tfoot>
@@ -276,6 +282,17 @@
           .patch(`/api/v1/orders/${id}/`, item)
           .then(() => {
             this.$router.push({ name: 'Pedidos' })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },
+      generateComissionNote () {
+        const id = this.$route.params.id
+        axios
+          .post(`/api/v1/orders/${id}/generate_comission_note/`)
+          .then(() => {
+            this.$router.push({ name: 'Notas de Comissão' })
           })
           .catch(error => {
             console.log(error)

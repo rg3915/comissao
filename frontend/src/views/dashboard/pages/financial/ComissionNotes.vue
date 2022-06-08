@@ -24,6 +24,9 @@
               Funcionário
             </th>
             <th class="primary--text text-center">
+              Total
+            </th>
+            <th class="primary--text text-center">
               Data de Pagamento
             </th>
             <th class="text-center primary--text">
@@ -42,6 +45,9 @@
             </td>
             <td>
               {{ item.employee.user.first_name }} {{ item.employee.user.last_name }}
+            </td>
+            <td>
+              R$ <span class="float-right">{{ item|total }}</span>
             </td>
             <td class="text-center">
               {{ item.payment_date|formatDate }}
@@ -109,9 +115,14 @@
         return id
       },
       formatDate (date) {
+        if (!date) return
+
         const string = date.split('-')
         const day = string[2].split('T')[0]
         return `${day}/${string[1]}/${string[0]}`
+      },
+      total (item) {
+        return item.comission_note_items.reduce((acc, i) => acc + parseFloat(i.comission), 0)
       },
     },
   }

@@ -10,7 +10,7 @@
           Nota de Pagamento da Comissão
         </div>
 
-        <div class="text-subtitle-1 font-weight-light">
+        <div class="text-h2 font-weight-light">
           {{ item.employee.user.first_name }} {{ item.employee.user.last_name }}
         </div>
       </template>
@@ -167,6 +167,8 @@
         return comission * 100
       },
       formatDate (date) {
+        if (!date) return
+
         const string = date.split('-')
         const day = string[2].split('T')[0]
         return `${day}/${string[1]}/${string[0]}`

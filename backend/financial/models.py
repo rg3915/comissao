@@ -16,7 +16,7 @@ class ComissionNote(models.Model):
         verbose_name='funcionário',
         on_delete=models.CASCADE
     )
-    payment_date = models.DateField('data de pagamento')
+    payment_date = models.DateField('data de pagamento', null=True, blank=True)
     paid = models.BooleanField('pago?', default=False)
     active = models.BooleanField('ativo', default=True)
     created = models.DateTimeField('criado em', auto_now_add=True)
