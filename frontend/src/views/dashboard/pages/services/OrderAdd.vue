@@ -101,38 +101,39 @@
 
             <tbody>
               <tr
-                v-for="item in item.order_items"
-                :key="item.id"
+                v-for="(subitem, idx) in item.order_items"
+                :key="subitem.id"
               >
                 <td class="text-center">
                   <v-text-field
-                    v-model="item.quantity"
+                    v-model="item.order_items[idx].quantity"
                     label="Quantidade"
                   />
                 </td>
                 <td>
                   <v-select
-                  v-model="item.service"
+                  v-model="item.order_items[idx].service"
                   label="Serviço"
                   :items="services"
+                  @change="getPrice(item.order_items[idx].service, idx)"
                   ></v-select>
                 </td>
                 <td>
                   <v-text-field
-                    v-model="item.price"
+                    v-model="item.order_items[idx].price"
                     label="Preço"
                   />
                 </td>
                 <td>
                   <v-select
-                  v-model="item.employee"
+                  v-model="item.order_items[idx].employee"
                   label="Funcionário"
                   :items="employees"
                   ></v-select>
                 </td>
                 <td class="text-right">
                   <v-text-field
-                    v-model="item.comission_employee"
+                    v-model="item.order_items[idx].comission_employee"
                     label="Comissão"
                   />
                 </td>
@@ -172,6 +173,7 @@
         customers: [],
         employees: [],
         services: [],
+        services_obj: [],
         item: {
           value: '',
           paid: false,
@@ -214,10 +216,16 @@
             this.services = response.data.map(obj => {
               return {
                 value: obj.id,
-                text: `${obj.description}`,
+                text: obj.description,
               }
             })
+            this.services_obj = response.data
           })
+      },
+      getPrice (serviceId, idx) {
+        const data = this.services_obj.find(i => i.id === serviceId)
+        this.item.order_items[idx].price = data.price
+        this.item.order_items[idx].comission_employee = data.comission
       },
       addOrderItem () {
         this.item.order_items.push({
