@@ -27,9 +27,10 @@
                   md="6"
                 >
                   <v-text-field
-                    v-model="item.value"
+                    v-model="total"
                     class="purple-input"
                     label="Valor"
+                    disabled
                   />
                 </v-col>
 
@@ -69,6 +70,7 @@
               </v-row>
             </v-container>
           </v-form>
+
         </base-material-card>
 
         <base-material-card>
@@ -187,6 +189,11 @@
       this.getEmployees()
       this.getServices()
     },
+    computed: {
+      total: function () {
+        return this.item.order_items.reduce((acc, item) => acc + parseFloat(item.price), 0)
+      },
+    },
     methods: {
       getCustomers () {
         axios.get('/api/v1/customers')
@@ -237,8 +244,12 @@
         })
       },
       async submitForm () {
+        const item = { ...this.item }
+        item.value = this.total
+        // Se quiser editar o Valor total manualmente, ignore o Spread operator (const item = { ...this.item })
+        // e faça .post('/api/v1/orders/', this.item).
         axios
-          .post('/api/v1/orders/', this.item)
+          .post('/api/v1/orders/', item)
           .then(() => {
             this.$router.push({ name: 'Pedidos' })
           })
