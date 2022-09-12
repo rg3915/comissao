@@ -58,6 +58,8 @@ npm install
 npm run serve
 ```
 
+Template: https://www.creative-tim.com/product/vuetify-material-dashboard
+
 Se der erro ao rodar o projeto, então verifique em `package.json` a versão do `babel-eslint`.
 
 ```
